@@ -1,0 +1,21 @@
+.blog .row{
+    width: 100%;
+    padding: 20px;
+}
+
+.blog-item {
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.blog-item img{
+    width: 100%;
+}
+
+.blog-item .inline-flex img{
+    width: 20%;
+}
+
+.blog-item .inline-flex img:hover{
+    cursor: pointer;
+}

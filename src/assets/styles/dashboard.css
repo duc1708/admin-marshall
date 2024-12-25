@@ -1,0 +1,12 @@
+.dashboard .list-categorys .row{
+    width: 100%;
+}
+.dashboard .list-categorys img{
+    width: 100%;
+    height: 30vh;
+    margin-top: 30px;
+}
+
+.recharts-responsive-container {
+    margin-top: 52px;
+}

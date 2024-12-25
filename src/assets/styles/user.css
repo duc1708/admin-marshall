@@ -1,0 +1,118 @@
+
+.account {
+    padding: 20px 20px 20px 20px;
+    background: #fff;
+    border: 1px solid rgb(239 230 230 / 50%);
+    border-radius: 10px;
+}
+
+.account input{
+    height:50px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid rgb(239 230 230 / 50%);
+    padding: 10px 10px 10px 10px;
+
+}
+
+.properties-user p{
+    width: 200px;
+    margin-top: 20px;
+    color: #637381;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 35px;
+}
+
+.add-employee{
+    height: 50px;
+    width: 150px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    float: right;
+}
+
+.update-employee{
+    height: 50px;
+    width: 150px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    float: right;
+    margin-left: 5px;
+}
+
+
+/* Css for component addEmployee */
+.addEmployee{
+    padding: 20px 20px 20px 20px;
+    border: 1px solid rgb(239 230 230 / 50%);
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.addEmployee label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #637381;
+    width: 200px;
+}
+
+.addEmployee button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #000;
+    width: 150px;
+    height: 40px;
+    border:none;
+    color: #fff;
+    border-radius: 10px;
+    margin-left: 300px;
+}
+
+/* Css edit  */
+
+.edit-employee-form {
+    border: 1px solid rgb(239 230 230 / 50%);
+    margin-top: 20px;
+    padding: 20px 20px 20px 20px;
+}
+
+.edit-employee-form button{
+    border: none;
+    background: #000;
+    font-size: 13px;
+    color: #fff;
+    height: 40px;
+    width: 150px;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.edit-employee-form label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 40px;
+}
+
+.edit-employee-form input{
+    height: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-content{
+    width: 215%;
+    right: 300px;
+    top: 61px;
+    background-color: #000;
+    color: #fff;
+}

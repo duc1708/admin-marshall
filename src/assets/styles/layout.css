@@ -1,0 +1,37 @@
+.layout .team{
+    padding: 10px 10px 10px 10px;
+    margin-top: 30px;
+    width: 100%;
+    background:#f9fafb;
+}
+
+.layout .option-manager{
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.layout .option-manager svg{
+    font-size: 18px;
+}
+
+.layout .right-layout{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.layout .right-layout svg{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.layout .right-layout .avt{
+    width: 20%;
+    height: 50px;
+    border-radius: 28px;
+    margin-right: 20px;
+}
+
+.layout .right-layout .content{
+    margin-top: 40px;
+}

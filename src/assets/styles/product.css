@@ -1,0 +1,48 @@
+.products .filtered{
+    float:right;
+}
+
+.products .filtered .dropdown{
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+}
+.products .filtered h6{
+    margin-top: 5px;
+}
+
+.nav-link{
+    color:#000;
+}
+
+/* Css for showProduct */
+
+.products-list .row{
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+}
+
+.products-list  .product-item {
+    background: #fff;
+    border-radius: 23px;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+}
+
+.products-list .product-item img{
+    width: 100%;
+}
+
+.products-list .product-item .inline-flex{
+    margin-left: 60px;
+}
+
+.products-list .product-item .inline-flex img{
+    margin-right: 5px;
+    width: 25%;
+}
+
+.products-list .product-item .inline-flex img:hover{
+    cursor: pointer;
+}

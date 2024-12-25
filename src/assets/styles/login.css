@@ -1,0 +1,50 @@
+.login_about{
+    background-image: url('https://res.cloudinary.com/deuqzffc4/image/upload/v1733303460/background_login_pyt80x.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    max-width: 100%;
+    margin-top: -200px;
+    height: 180vh;
+
+}
+
+.img_login{
+    margin-left: 400px;
+    margin-top: 300px;
+    width: 40%;
+}
+
+.form_login{
+    background-color: #faf7f7;
+    height: 48vh;
+    width: 40%;
+    margin-left: 400px;
+}
+
+.form_login{
+    padding: 50px 50px 50px 100px;
+}
+
+.user{
+    margin-bottom: 20px;
+}
+
+.form_login input{
+    margin-left: 30px;
+    border: none;
+    height: 40px;
+    width: 300px;
+    background-color: #faf7f7;
+}
+
+.form_login button{
+    margin-top: 20px;
+    margin-left: 120px;
+    border: none;
+    height: 40px;
+    width: 100px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5%;
+}

@@ -110,9 +110,14 @@
 }
 
 .modal-content{
-    width: 215%;
-    right: 300px;
+    width: 257%;
+    right: 400px;
     top: 61px;
     background-color: #000;
     color: #fff;
+}
+
+input[type="date"] {
+    height: 30px;
+    margin-left: 98px;
 }

@@ -401,6 +401,37 @@ app.put('/api/products/order/:id', (req, res) => {
   });
 });
 
+app.put('/api/ngaygiao-donhangdamua/:id', async (req, res) => {
+  const { id } = req.params;
+  const { ngayGiaoHang } = req.body;
+
+  db.query('SELECT * FROM donhang_damua WHERE id = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Lỗi khi kiểm tra đơn hàng:', err);
+      return res.status(500).json({ message: 'Đã xảy ra lỗi khi kiểm tra đơn hàng!' });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Đơn hàng không tồn tại!' });
+    }
+
+    // Cập nhật trạng thái đơn hàng
+    db.query(
+      'UPDATE donhang_damua SET ngayGiao = ? WHERE id = ?',
+      [ngayGiaoHang, id],
+      (err) => {
+        if (err) {
+          console.error('Lỗi khi cập nhật trạng thái:', err);
+          return res.status(500).json({ message: 'Đã xảy ra lỗi khi cập nhật trạng thái!' });
+        }
+
+        res.status(200).json({ message: 'Cập nhật trạng thái thành công!' });
+      }
+    );
+  });
+ 
+});
+
 app.listen(4001, () => {
     console.log('Server running at port 4001');
 });

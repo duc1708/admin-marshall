@@ -51,7 +51,14 @@ export default function Accounts() {
   const [tenKh, setTenKh] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null); // State for selected user ID
   const handleClose = () => setShow(false);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; // Số sản phẩm trên mỗi trang
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = cartItems.slice(indexOfFirstItem, indexOfLastItem);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+  
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -174,6 +181,8 @@ export default function Accounts() {
         });
       return;
     }
+
+    
   
     // Gửi yêu cầu cập nhật trạng thái lên server
     axios.put(`${process.env.REACT_APP_API_URL_ADMIN}products/order/${id}`, { trangThai: newStatus })
@@ -201,6 +210,20 @@ export default function Accounts() {
   const filteredAdmins = admins.filter(admin =>
     admin.hoTen.toLowerCase().includes(searchAdminKeyword.toLowerCase())
   );
+
+  const handleUpdateDeliveryDate = (id, newDate) => {
+    // Gửi yêu cầu cập nhật ngày giao hàng lên server
+    axios.put(`${process.env.REACT_APP_API_URL_ADMIN}ngaygiao-donhangdamua/${id}`, { ngayGiaoHang: newDate })
+      .then(() => {
+        // Cập nhật ngày giao hàng trong state
+        setCartItems(cartItems.map((cartItem) => cartItem.id === id ? { ...cartItem, ngayGiaoHang: newDate } : cartItem));
+        alert('Cập nhật ngày giao hàng thành công');
+      })
+      .catch((error) => {
+        console.error("Có lỗi khi cập nhật ngày giao hàng:", error);
+        alert("Cập nhật ngày giao hàng không thành công!");
+      });
+  };
   return (
     <div className='account'>
       <Box sx={{ width: '100%' }}>
@@ -222,8 +245,8 @@ export default function Accounts() {
         <Modal.Body>
         <Row>
           <Col sm={8}>
-                            {cartItems.length === 0 ? (
-                            <p>No items in the cart.</p>
+                                  {currentItems.length === 0 ? (
+                              <p>No items in the cart.</p>
                             ) : (   
                             <div>
                                 <div style={{marginLeft: '114px', marginTop:'20px'}} className='inline-flex'>
@@ -232,31 +255,59 @@ export default function Accounts() {
                                     <h6 style={{width: '200px'}}>Số lượng</h6>
                                     <h6 style={{width: '200px'}}>Tổng tiền</h6>
                                     <h6 style={{width: '200px'}}>Trạng thái</h6>
+                                    <h6 style={{width: '150px'}}>Ngày giao dự kiến</h6>
                                 </div>
-                                {cartItems.map((item, index) => (
-                                    <div>
-                                        <div class='infor-cart inline-flex'>
-                                            <img
-                                                src={item.anhDD || 'placeholder-image-url.jpg'}
-                                                alt={item.tenSp || 'No Name'}
-                                                style={{ width: '80px', height: 'auto' }}
-                                            />
-                                            <h6 style={{width: '200px', marginTop: '30px'}}>{item.tenSp}</h6>
-                                            <p style={{fontSize:'13px', width: '200px', marginTop: '30px', marginLeft:'26px'}}>{item.giaTien?.toLocaleString() || '0'} ₫</p>
-                                            <div style={{width: '175px', marginTop: '30px', marginLeft:'38px'}} className=' quantity inline-flex' >
-                                                <span>{item.soLuong || 0}</span>
-                                            </div>
-                                            <p style={{fontSize:'13px',width: '200px', marginTop: '30px'}}>{(item.giaTien * item.soLuong)?.toLocaleString() || '0'} ₫</p>
-                                            <button onClick={() => handleUpdateStatus(item.id, item.trangThai)} style={{marginTop:'20px', marginRight:'-20px',height:'30px', border:'none', background:'#075807', width:'100px', color:'#fff', fontSize:'13px', fontWeight:'500'}}>
-                                                {item.trangThai === 'Đang xử lý' ? 'Đã nhận' : item.trangThai === 'Đã nhận' ? 'Đang giao' : 'Giao thành công'}
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
+                                {currentItems.map((item, index) => (
+  <div key={item.id}>
+    <div class='infor-cart inline-flex'>
+      <img
+        src={item.anhDD || 'placeholder-image-url.jpg'}
+        alt={item.tenSp || 'No Name'}
+        style={{ width: '80px', height: 'auto' }}
+      />
+      <h6 style={{ width: '200px', marginTop: '30px' }}>{item.tenSp}</h6>
+      <p style={{ fontSize: '13px', width: '200px', marginTop: '30px', marginLeft: '26px' }}>{item.giaTien?.toLocaleString() || '0'} ₫</p>
+      <div style={{ width: '175px', marginTop: '30px', marginLeft: '38px' }} className='quantity inline-flex'>
+        <span>{item.soLuong || 0}</span>
+      </div>
+      <p style={{ fontSize: '13px', width: '200px', marginTop: '30px' }}>{(item.giaTien * item.soLuong)?.toLocaleString() || '0'} ₫</p>
+      <button 
+        onClick={() => handleUpdateStatus(item.id, item.trangThai)} 
+        style={{ marginTop: '20px', marginLeft: '-30px', height: '38px', border: 'none', background: '#075807', width: '125px', color: '#fff', fontSize: '13px', fontWeight: '500' }}
+      >
+        {item.trangThai === 'Đang xử lý' ? 'Đã nhận' : item.trangThai === 'Đã nhận' ? 'Đang giao' : 'Giao thành công'}
+      </button>
+      <input 
+        type="date" 
+        value={item.ngayGiaoHang || ''} 
+        onChange={(e) => { 
+          const newDate = e.target.value;
+          // Gọi hàm để cập nhật ngày giao hàng của đơn hàng
+          handleUpdateDeliveryDate(item.id, newDate);
+        }} 
+        style={{ marginTop: '20px' }}
+      />
+    </div>
+  </div>
+))}
                             </div>
                             )}
           </Col>
         </Row>
+        {cartItems.length > itemsPerPage && (
+          <ul className="pagination">
+            {Array.from({ length: Math.ceil(cartItems.length / itemsPerPage) }).map((_, index) => (
+              <li key={index}>
+                <button
+                  style={{ background: '#000', border: 'none', color: '#fff', width: '30px', marginRight: '20px' }}
+                  onClick={() => paginate(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

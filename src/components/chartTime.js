@@ -64,7 +64,7 @@ export default function SalesChart() {
           onChange={(date) => setEndDate(date)}
           dateFormat="dd/MM/yyyy"
         />
-        <button onClick={handleDateChange}>Lọc</button>
+        <button style={{border:'none',background:'#000', color:'#fff', marginLeft:'20px', fontSize:'13px', fontWeight:'500'}} onClick={handleDateChange}>Lọc</button>
       </div>
       {filteredData.length > 0 ? (
         <Line data={chartData} />
